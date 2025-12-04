@@ -5,21 +5,31 @@ on:
     - cron: "0 */12 * * *"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: Platane/snk@v3
+      - name: Checkout (with write creds)
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: true  # important so the GITHUB_TOKEN is available to git
+          fetch-depth: 0
+
+      - name: Generate snake
+        uses: Platane/snk@v3
         with:
           github_user_name: Veerakumar1405
           outputs: dist/snake.svg
-      - name: Commit files
+
+      - name: Commit snake to output/
         run: |
           mkdir -p output
           cp dist/snake.svg output/snake.svg
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-          git add -A
-          git commit -m "Updated snake animation" || echo "No changes"
-          git push
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add output/snake.svg
+          git commit -m "Updated snake animation" || echo "No changes to commit"
+          git push origin HEAD:main
