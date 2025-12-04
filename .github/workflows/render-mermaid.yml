@@ -11,11 +11,9 @@ jobs:
   render:
     runs-on: ubuntu-latest
 
-    # Put all job-level env vars here (only once)
     env:
       GIT_COMMITTER_NAME: github-actions[bot]
       GIT_COMMITTER_EMAIL: github-actions[bot]@users.noreply.github.com
-      # GITHUB_TOKEN is available automatically; don't redefine it here.
 
     steps:
       - name: Checkout repo
@@ -28,8 +26,26 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install mermaid-cli globally
-        run: npm install -g @mermaid-js/mermaid-cli
+      - name: Install mermaid-cli & dos2unix
+        run: |
+          npm install -g @mermaid-js/mermaid-cli
+          sudo apt-get update -y
+          sudo apt-get install -y dos2unix
+
+      - name: Show raw .mmd file (first 200 chars & lines) - debug
+        run: |
+          echo "==== begin: diagram/architecture.mmd (head) ===="
+          sed -n '1,40p' diagram/architecture.mmd || true
+          echo "==== end: diagram/architecture.mmd (head) ===="
+          echo "==== show as hex bytes (first 64 bytes) - detect BOM ===="
+          head -c 64 diagram/architecture.mmd | xxd -g 1 -u || true
+
+      - name: Normalize line endings and remove BOM
+        run: |
+          dos2unix diagram/architecture.mmd || true
+          # remove utf-8 BOM if present
+          tail -c +4 diagram/architecture.mmd > /tmp/arch.tmp || cp diagram/architecture.mmd /tmp/arch.tmp
+          mv /tmp/arch.tmp diagram/architecture.mmd || true
 
       - name: Create assets folder
         run: mkdir -p assets
@@ -46,6 +62,9 @@ jobs:
         run: |
           mmdc -i diagram/architecture.mmd -o assets/architecture.svg -b transparent --width 1200 -p puppeteer-config.json
 
+      - name: List generated asset
+        run: ls -l assets || true
+
       - name: Commit generated SVG
         run: |
           git config user.name "$GIT_COMMITTER_NAME"
@@ -53,3 +72,5 @@ jobs:
           git add assets/architecture.svg puppeteer-config.json || true
           git commit -m "chore: render mermaid -> assets/architecture.svg" || echo "no changes to commit"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
