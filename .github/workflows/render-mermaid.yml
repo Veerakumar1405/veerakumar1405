@@ -10,6 +10,7 @@ on:
 jobs:
   render:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -25,14 +26,27 @@ jobs:
       - name: Create assets folder
         run: mkdir -p assets
 
-      - name: Render architecture.mmd -> architecture.svg
-        run: mmdc -i diagram/architecture.mmd -o assets/architecture.svg -b transparent --width 1200
+      - name: Create puppeteer config to disable sandbox (CI workaround)
+        run: |
+          cat > puppeteer-config.json <<'JSON'
+          {
+            "args": ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"]
+          }
+          JSON
+
+      - name: Render architecture.mmd -> assets/architecture.svg
+        run: |
+          # use -p to pass puppeteer config file so Chromium runs without sandbox
+          mmdc -i diagram/architecture.mmd -o assets/architecture.svg -b transparent --width 1200 -p puppeteer-config.json
 
       - name: Commit generated SVG
+        env:
+          GIT_COMMITTER_NAME: github-actions[bot]
+          GIT_COMMITTER_EMAIL: github-actions[bot]@users.noreply.github.com
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add assets/architecture.svg
+          git config user.name "$GIT_COMMITTER_NAME"
+          git config user.email "$GIT_COMMITTER_EMAIL"
+          git add assets/architecture.svg puppeteer-config.json || true
           git commit -m "chore: render mermaid -> assets/architecture.svg" || echo "no changes to commit"
           git push
         env:
