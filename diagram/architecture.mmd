@@ -1,0 +1,29 @@
+flowchart LR
+  subgraph Dev[Developers]
+    A[Feature/Code] -->|push| B[Repo (GitHub)]
+  end
+
+  subgraph CI["CI / CD"]
+    B --> C[CI Runner (GitHub Actions / Jenkins)]
+    C --> D[Test Orchestrator]
+    D --> E[Test Execution Workers (Docker / Kubernetes)]
+  end
+
+  subgraph Tests["Test Layers"]
+    E --> UI[UI Tests (Playwright / Selenium)]
+    E --> API[API Tests (RestAssured / Postman)]
+    E --> Contract[Contract Tests / Schema Validation]
+    E --> Perf[Performance Tests (JMeter)]
+  end
+
+  subgraph Artifacts["Artifacts & Reports"]
+    UI & API & Contract & Perf --> F[Reports (Allure / Extent)]
+    F --> G[Quality Dashboard (SonarQube / Grafana)]
+    F --> H[Artifacts (logs, traces, screenshots)]
+  end
+
+  subgraph Infra["Cloud & DevOps"]
+    C --> I[Container Registry]
+    I --> E
+    C --> J[Azure / AWS / GCP]
+  end

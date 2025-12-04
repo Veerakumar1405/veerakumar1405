@@ -1,0 +1,39 @@
+name: Render Mermaid Diagrams
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'diagram/**'
+      - '.github/workflows/render-mermaid.yml'
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install mermaid-cli globally
+        run: npm install -g @mermaid-js/mermaid-cli
+
+      - name: Create assets folder
+        run: mkdir -p assets
+
+      - name: Render architecture.mmd -> architecture.svg
+        run: mmdc -i diagram/architecture.mmd -o assets/architecture.svg -b transparent --width 1200
+
+      - name: Commit generated SVG
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/architecture.svg
+          git commit -m "chore: render mermaid -> assets/architecture.svg" || echo "no changes to commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
