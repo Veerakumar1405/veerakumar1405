@@ -110,7 +110,7 @@
 ---
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Veerakumar1405/Veerakumar1405/output/snake.svg" width="100%" />
+  <img src="https://raw.githubusercontent.com/Veerakumar1405/Veerakumar1405/master/output/snake.svg" alt="Contribution snake" />
 </p>
 
 <p align="center">
