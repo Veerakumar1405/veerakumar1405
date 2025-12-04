@@ -30,17 +30,17 @@
 </p>
 
 ### **🟨 Automation Frameworks**
-- Selenium WebDriver  
-- Playwright  
-- Cypress (learning)  
-- TestNG, JUnit5  
+- Selenium WebDriver
+- Playwright
+- Cypress (learning)
+- TestNG, JUnit5
 - Cucumber (BDD)
 
 ### **🟩 API Testing**
-- RestAssured  
-- Postman  
-- Swagger  
-- JSON/XML Validation  
+- RestAssured
+- Postman
+- Swagger
+- JSON/XML Validation
 - Schema Validation
 
 ### **🟧 DevOps & CI/CD**
@@ -52,9 +52,9 @@
 </p>
 
 ### **🟥 Quality Engineering Tools**
-- SonarQube  
-- JMeter  
-- Allure / Extent Reports  
+- SonarQube
+- JMeter
+- Allure / Extent Reports
 - Jenkins / GitHub Actions
 
 ---
@@ -66,5 +66,87 @@
 </p>
 
 <p align="center">
-  <em>High-level architecture with CI/CD, test layers, and reporting — animated + interactive</em>
+  <em>High-level architecture with CI/CD, test layers, and reporting — rendered diagram below</em>
 </p>
+
+<p align="center">
+  <img src="./assets/architecture.svg" alt="Architecture diagram" style="max-width:100%; border-radius:12px; box-shadow: 0 8px 24px rgba(2,6,23,0.6);" />
+</p>
+
+---
+
+## ✨ Framework Supports
+✔ Page Object Model (POM)  
+✔ Data-Driven Testing  
+✔ BDD with Cucumber  
+✔ Parallel execution  
+✔ CI/CD ready
+
+---
+
+# 🚀 Featured Projects
+
+### 🔹 **1. Selenium + TestNG Hybrid Framework**
+A scalable UI automation framework with:
+- Parallel execution
+- WebDriverManager
+- Page Object Model
+- Allure reporting
+
+🔗 Repo Link: *(Add your link here)*
+
+---
+
+### 🔹 **2. API Automation – RestAssured + BDD**
+- JWT/OAuth support
+- Request/Response validation
+- Schema validation
+- Reusable API keywords
+
+🔗 Repo Link: *(Add your link here)*
+
+---
+
+### 🔹 **3. Playwright Automation (Learning Project)**
+- Cross-browser automation
+- Tracing, snapshots
+- Fixtures-based execution
+
+🔗 Repo Link: *(Add your link here)*
+
+---
+
+# 📊 GitHub Insights
+
+<div align="center">
+  <img height="165" src="https://github-readme-stats.vercel.app/api?username=Veerakumar1405&show_icons=true&theme=radical&hide_border=true" />
+  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs?username=Veerakumar1405&layout=compact&theme=radical&hide_border=true" />
+</div>
+
+---
+
+# 🏆 Achievements & Certifications
+
+- 🔖 **ISTQB Certified**
+- 🎓 **Azure Fundamentals (AZ-900)**
+- 🧩 **Postman API Expert Badge**
+- 💡 **Automation Hackathon Winner**
+
+---
+
+# 🌐 Connect With Me
+
+<p align="left">
+  <a href="#"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+  <a href="#"><img src="https://img.shields.io/badge/Portfolio-000?style=for-the-badge&logo=vercel&logoColor=white" /></a>
+</p>
+
+---
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/Veerakumar1405/Veerakumar1405/output/snake.svg" width="100%" />
+</div>
+
+<div align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=140&section=footer&color=gradient" />
+</div>
