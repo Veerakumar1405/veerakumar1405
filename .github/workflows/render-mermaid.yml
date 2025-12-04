@@ -11,9 +11,17 @@ jobs:
   render:
     runs-on: ubuntu-latest
 
+    # Put all job-level env vars here (only once)
+    env:
+      GIT_COMMITTER_NAME: github-actions[bot]
+      GIT_COMMITTER_EMAIL: github-actions[bot]@users.noreply.github.com
+      # GITHUB_TOKEN is available automatically; don't redefine it here.
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -36,18 +44,12 @@ jobs:
 
       - name: Render architecture.mmd -> assets/architecture.svg
         run: |
-          # use -p to pass puppeteer config file so Chromium runs without sandbox
           mmdc -i diagram/architecture.mmd -o assets/architecture.svg -b transparent --width 1200 -p puppeteer-config.json
 
       - name: Commit generated SVG
-        env:
-          GIT_COMMITTER_NAME: github-actions[bot]
-          GIT_COMMITTER_EMAIL: github-actions[bot]@users.noreply.github.com
         run: |
           git config user.name "$GIT_COMMITTER_NAME"
           git config user.email "$GIT_COMMITTER_EMAIL"
           git add assets/architecture.svg puppeteer-config.json || true
           git commit -m "chore: render mermaid -> assets/architecture.svg" || echo "no changes to commit"
           git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
