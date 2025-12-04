@@ -70,36 +70,40 @@
 
 ---
 
-# 📊 GitHub Statistics (Fully Working)
+## 📊 GitHub Statistics (Stable + Fallbacks)
 
 <p align="center">
-  <img height="170" src="https://github-readme-stats.vercel.app/api?username=Veerakumar1405&show_icons=true&theme=tokyonight&hide_border=true" />
-  <img height="170" src="https://github-readme-streak-stats.herokuapp.com/?user=Veerakumar1405&theme=tokyonight&hide_border=true" />
+  <!-- Primary: GitHub Readme Stats (very reliable) -->
+  <img height="170" src="https://github-readme-stats.vercel.app/api?username=Veerakumar1405&show_icons=true&theme=tokyonight&hide_border=true" alt="GitHub Stats" />
+
+  <!-- Streaks: primary (heroku-hosted). If this fails, the backup below will render -->
+  <img height="170" src="https://github-readme-streak-stats.herokuapp.com/?user=Veerakumar1405&theme=tokyonight&hide_border=true" alt="GitHub Streak" />
 </p>
 
-### 🔹 Activity Graph (Stable Version)
+### 🔹 Activity Graph (Primary)
 <p align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=Veerakumar1405&theme=react-dark&hide_border=true" />
+  <!-- Primary activity graph (vercel-hosted) -->
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=Veerakumar1405&theme=react-dark&hide_border=true" alt="Contribution graph" />
 </p>
 
-### 🔹 Backup Graph (Never Breaks)
+### 🔹 Activity Graph (Backup — always-on)
 <p align="center">
-  <img src="https://ghchart.rshah.org/4b6cb7/Veerakumar1405" alt="Contribution Graph" />
-</p>
-
----
-
-# 🎞️ Animated Tech Stack (All Reliable Links)
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/DenverCoder1/github-readme-streak-stats/master/assets/bar.gif" width="100%" />
-</p>
-
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=selenium,postman,gradle,maven,idea,vscode,githubactions,docker,azure&theme=dark&perline=8" height="60"/>
+  <!-- Backup fallback (ghchart) -->
+  <img src="https://ghchart.rshah.org/4b6cb7/Veerakumar1405" alt="Backup contribution graph" />
 </p>
 
 ---
+
+## 🎞️ Animated Tech Stack (stable)
+<p align="center">
+  <!-- Use a stable hosted gradient bar + skillicons CDN -->
+  <img src="https://raw.githubusercontent.com/DenverCoder1/github-readme-streak-stats/master/assets/bar.gif" width="100%" alt="Gradient bar" />
+</p>
+
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=selenium,postman,gradle,maven,idea,vscode,githubactions,docker,azure&theme=dark&perline=8" height="60" alt="tech icons" />
+</p>
+
 
 # 🌐 Connect With Me
 <p align="left">
